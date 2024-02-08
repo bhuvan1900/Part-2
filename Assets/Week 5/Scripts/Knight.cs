@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Knight : MonoBehaviour
@@ -14,6 +15,7 @@ public class Knight : MonoBehaviour
     public float maxHealth = 5;
     bool isDead = false;
     public HealthBar healthBar;
+    float attack;
 
     void Start()
     {
@@ -40,7 +42,14 @@ public class Knight : MonoBehaviour
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
+         
+
+       else if (Input.GetMouseButtonDown(1) && !clickingOnSelf)
+        {
+            Attack();
+        }
         animator.SetFloat("Movement", movement.magnitude);
+
     }
     private void OnMouseDown()
     {
@@ -55,6 +64,8 @@ public class Knight : MonoBehaviour
     {
         clickingOnSelf = false;
     }
+
+    
 
     public void TakeDamage(float damage)
     {
@@ -73,5 +84,9 @@ public class Knight : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        animator.SetTrigger("Attack");
+    }
     
 }
