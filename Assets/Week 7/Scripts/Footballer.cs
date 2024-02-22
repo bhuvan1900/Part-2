@@ -6,17 +6,38 @@ public class Footballer : MonoBehaviour
 {
 
     SpriteRenderer sr;
+    public Color selectedColour;
+    public Color unselectedColour;
+    Rigidbody rb;
+    public float speed = 100;
 
-
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Start()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody>();
+        Selected(false);
+        // Controller.SelectedPlayer = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-        
+        Controller.SetSelected(this);
+    }
+    public void Selected(bool isSelected)
+    {
+        if (isSelected)
+        {
+            sr.color = selectedColour;
+
+        }
+        else
+        {
+            sr.color = unselectedColour;
+        }
+    }
+    public void Move(Vector2 direction)
+    {
+        rb.AddForce(direction* speed);
     }
 }
