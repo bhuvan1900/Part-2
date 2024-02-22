@@ -22,7 +22,7 @@ public class Footballer : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Controller.SetSelected(this);
+        Controller.SetSelectedPlayer(this);
     }
     public void Selected(bool isSelected)
     {
