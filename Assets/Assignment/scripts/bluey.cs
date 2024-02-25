@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Apple;
 
@@ -11,12 +12,13 @@ public class bluey : MonoBehaviour
     Vector2 movement;
     Vector2 clickPoint;
     public float speed = 5;
-
-
+    Animator animator;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+       
     }
 
     private void FixedUpdate()
@@ -35,13 +37,7 @@ public class bluey : MonoBehaviour
     {
         //where is bluey moving
        clickPoint= Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        animator.SetFloat("move", movement.magnitude);  
     }
-
-   private void Hit(float damage)
-    {
-
-    }
-
-
-
 }
